@@ -49,11 +49,9 @@ jobs:
             video-pipeline \
             --video_path /app/input/${{ github.event.inputs.video_name || 'sample_video.mp4' }} \
             --output_dir /app/output_data
-        env:
-          # Optionally, if your pipeline needs environment variables (e.g., for model download)
-          # These are usually stored as GitHub Secrets for sensitive info.
-          # MY_SECRET_VAR: ${{ secrets.MY_SECRET }}
-          pass
+       # env:
+
+      #  pass
 
       - name: Validate Pipeline Outputs
         id: validate_outputs
