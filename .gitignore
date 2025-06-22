@@ -1,0 +1,36 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+env/
+.venv/
+
+# Ignore Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Ignore logs
+*.log
+
+# Ignore OS junk
+.DS_Store
+Thumbs.db
+
+# Ignore environment config
+.env
+
+# Ignore Docker build cache
+*.tar
+*.gz
+
+# Ignore video files
+*.mp4
+*.avi
+*.mov
+
+# IntelliJ / PyCharm files
+.idea/
+*.iml
