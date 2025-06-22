@@ -35,12 +35,9 @@ jobs:
 
 
       - name: Run pipeline Docker container
-        # This command runs your Docker container.
-        # -v: mounts local directories into the container.
-        #     - We mount a local 'input_data' directory to '/app/input' inside the container.
-        #     - We mount a local 'pipeline_output' directory to '/app/output_data' inside the container.
-        # --video_path: passes the path to the video INSIDE THE CONTAINER.
-        # --output_dir: passes the path to the output directory INSIDE THE CONTAINER.
+
+        #copy/mount input file from loca repo to container's - /app/input location
+
         run: |
           mkdir -p pipeline_output # Create the host output directory
           docker run \
@@ -53,27 +50,37 @@ jobs:
 
       #  pass
 
+      - name: Upload output files
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-files
+          path: /app/output
+
       - name: Validate Pipeline Outputs
+        #if else loop to check if output directory is created or not
+        ## if output dir exists then check how many jpg file are present
+        ### if more > 0 frames were extracted successfully
         id: validate_outputs
         run: |
-          OUTPUT_DIR="pipeline_output/frames" # Matches DEFAULT_FRAME_OUTPUT_DIR from config.py and mount
-          COCO_FILE="pipeline_output/detections.json" # Matches DEFAULT_COCO_OUTPUT_PATH
+          OUTPUT_DIR="pipeline_output/frames" # giving path to DEFAULT_FRAME_OUTPUT_DIR from config.py and mount
+          COCO_FILE="pipeline_output/detections.json" # giving path to DEFAULT_COCO_OUTPUT_PATH
 
-          echo "Checking for output directory: $OUTPUT_DIR"
+          echo "Checking for output directory: $OUTPUT_DIR" #print statement
           if [ -d "$OUTPUT_DIR" ]; then
             echo "Output frames directory exists."
             NUM_FRAMES=$(ls -1 "$OUTPUT_DIR"/*.jpg | wc -l)
             echo "Number of frames found: $NUM_FRAMES"
             if [ "$NUM_FRAMES" -gt 0 ]; then
-              echo "✅ Frames were extracted successfully."
+              echo "Frames were extracted successfully."
             else
-              echo "❌ No frames found in the output directory."
+              echo "No frames found in the output directory."
               exit 1 # Fail the step
             fi
           else
-            echo "❌ Output frames directory '$OUTPUT_DIR' does not exist."
+            echo "Output frames directory '$OUTPUT_DIR' does not exist."
             exit 1 # Fail the step
           fi
+        
 
           echo "Checking for COCO JSON file: $COCO_FILE"
           if [ -f "$COCO_FILE" ]; then
@@ -83,19 +90,19 @@ jobs:
               echo "COCO JSON file is not empty."
               # More robust JSON validation could be added here (e.g., using 'jq' or a python script)
               # For example: python -c "import json; open('$COCO_FILE').read()"
-              echo "✅ COCO JSON file generated successfully."
+              echo "OCO JSON file generated successfully."
             else
-              echo "❌ COCO JSON file is empty."
+              echo "COCO JSON file is empty."
               exit 1 # Fail the step
             fi
           else
-            echo "❌ COCO JSON file '$COCO_FILE' does not exist."
+            echo "COCO JSON file '$COCO_FILE' does not exist."
             exit 1 # Fail the step
           fi
 
       - name: Run Unit Tests
         run: |
           pip install pytest # Ensure pytest is available in the runner
-          pytest src/tests/ # Assuming your tests are in src/tests/
+          pytest test/ # Assuming your tests are in src/tests/
         # Or if running inside the Docker container (which is often better for consistency):
         # docker run --rm -v $(pwd)/src:/app/src video-pipeline sh -c "pip install pytest && pytest /app/src/tests"
