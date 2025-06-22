@@ -15,7 +15,7 @@ on:
       video_name:
         description: 'Name of the sample video file (e.g., sample.mp4)'
         required: true
-        default: 'sample.mp4' # Default if manually triggered
+        default: 'sample_video.mp4' # Default if manually triggered
 
 jobs:
   build-and-run-pipeline:
@@ -33,19 +33,6 @@ jobs:
         # It tags it as 'video-pipeline:latest'.
         run: docker build -t video-pipeline .
 
-      - name: Create sample video (placeholder for CI/CD)
-        # IMPORTANT: For a real test, you'd either:
-        # 1. Have a small 'sample_video.mp4' committed to your repo (recommended for simplicity here).
-        # 2. Download a sample video from an S3 bucket or similar service.
-        # This step just creates a dummy file for demonstration purposes if a real video isn't present for local testing of the workflow structure.
-        # For actual assignment submission, ensure a small sample video is correctly handled.
-        run: |
-          mkdir -p input_data
-          touch input_data/${{ github.event.inputs.video_name || 'sample.mp4' }} # Create a dummy file or use provided input
-          echo "This is a placeholder for your video content." > input_data/${{ github.event.inputs.video_name || 'sample.mp4' }}
-        # If you commit a real video, you would remove this step and ensure your video is at the correct path.
-        # For example, if you put 'sample_video.mp4' in a 'data/' directory in your repo,
-        # you'd mount that 'data/' directory in the next step.
 
       - name: Run pipeline Docker container
         # This command runs your Docker container.
@@ -57,10 +44,10 @@ jobs:
         run: |
           mkdir -p pipeline_output # Create the host output directory
           docker run \
-            -v $(pwd)/input_data:/app/input \
+            -v $(pwd)/input_files:/app/input \
             -v $(pwd)/pipeline_output:/app/output_data \
             video-pipeline \
-            --video_path /app/input/${{ github.event.inputs.video_name || 'sample.mp4' }} \
+            --video_path /app/input/${{ github.event.inputs.video_name || 'sample_video.mp4' }} \
             --output_dir /app/output_data
         env:
           # Optionally, if your pipeline needs environment variables (e.g., for model download)
