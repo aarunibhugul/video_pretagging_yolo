@@ -27,5 +27,7 @@ ENV PYTHONPATH=/app
 ENV PYTHONUNBUFFERED=1
 
 # Define entrypoint
-CMD ["python", "src/main_pipeline.py"]
+ENTRYPOINT ["python", "src/main_pipeline.py"]
+CMD []
+
 
