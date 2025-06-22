@@ -1,6 +1,6 @@
 # .github/workflows/main.yml
 
-name: MLOps Pipeline CI/CD
+name: Video Pre-Tagging MLOps Pipeline CI/CD
 
 # Define when this workflow should run
 on:
