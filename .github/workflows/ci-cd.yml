@@ -44,7 +44,7 @@ jobs:
         run: |
           mkdir -p pipeline_output # Create the host output directory
           docker run \
-            -v $(pwd)/input_files:/app/input \
+            -v $(pwd)/input:/app/input \
             -v $(pwd)/pipeline_output:/app/output_data \
             video-pipeline \
             --video_path /app/input/${{ github.event.inputs.video_name || 'sample_video.mp4' }} \
