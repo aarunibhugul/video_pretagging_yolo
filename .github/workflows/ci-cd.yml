@@ -39,6 +39,8 @@ jobs:
           docker run --rm \
           --entrypoint "" \
           -v ${{ github.workspace }}/unit_tests:/app/src/test \
+          -v ${{ github.workspace }}/unit_tests/unit_test_input:/app/unit_test_input \
+          -v ${{ github.workspace }}/unit_tests/unit_test_output:/app/unit_test_output \
           video-pipeline \
           sh -c "pip install pytest && pytest /app/src/test/ -v"
       
