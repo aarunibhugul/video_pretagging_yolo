@@ -1,0 +1,62 @@
+# MLOps Video Pre-tagging Pipeline - Quick Start
+
+This guide provides basic steps to run the video pre-tagging pipeline using Docker.
+
+## Getting Started
+
+### Prerequisites
+
+* **Docker Desktop** (or Docker Engine) installed.
+* A sample `.mp4` video file on your local machine.
+
+### Instructions
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/aarunibhugul/video_pretagging_yolo
+    ```
+
+2.  **Navigate to the project directory:**
+    ```bash
+    cd video_pretagging_yolo
+    ```
+
+3.  **Build the Docker image:**
+    ```bash
+    docker build -t video-pipeline .
+    ```
+
+4.  **Run the pipeline in a Docker container:**
+
+   
+    * **Option A: Use the `sample_video.mp4` included in this repository:**
+        If you're using the `sample_video.mp4` located at `input/sample_video.mp4` within this cloned repository, and you want outputs saved to a new folder named `my_pipeline_outputs` (which will be created in your current directory):
+
+        ```bash
+        docker run \
+          --rm \
+          -v "$(pwd)/input/sample_video.mp4:/app/input/video.mp4" \
+          -v "$(pwd)/my_pipeline_outputs:/app/output_data" \
+          video-pipeline \
+          --video_path /app/input/video.mp4 \
+          --output_dir /app/output_data
+        ```
+
+    * **Option B: Use your own video file from any local path:**
+        Replace `/path/to/YOUR_LOCAL_VIDEO_FILE.mp4` with the full absolute path to *your* video file on your computer. Also, replace `my_pipeline_outputs` with your desired local output directory name.
+
+        ```bash
+        docker run \
+          --rm \
+          -v "/path/to/YOUR_LOCAL_VIDEO_FILE.mp4:/app/input/video.mp4" \
+          -v "$(pwd)/my_pipeline_outputs:/app/output_data" \
+          video-pipeline \
+          --video_path /app/input/video.mp4 \
+          --output_dir /app/output_data
+        ```
+        **Note:**
+        * The left side of the first `-v` flag (`/path/to/YOUR_LOCAL_VIDEO_FILE.mp4`) needs to be the **absolute path to your video file on your local machine**.
+        * The local output directory is `$(pwd)/my_pipeline_outputs`. **You can change `my_pipeline_outputs` to any desired folder name on your local machine.**
+
+5.  **Check pipeline outputs:**
+    * Once the command completes, you will find the generated frames, `detections.json`, `pipeline_report.md`, and `pipeline_metrics_log.csv` in the local output directory you specified (e.g., `my_pipeline_outputs`).
