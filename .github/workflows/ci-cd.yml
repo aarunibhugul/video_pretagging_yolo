@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: output-files
-          path: /app/output_data
+          path: pipeline_output/
 
       - name: Validate Pipeline Outputs
         #if else loop to check if output directory is created or not
