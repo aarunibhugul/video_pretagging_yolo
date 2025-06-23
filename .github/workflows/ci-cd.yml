@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: output-files
-          path: /app/output
+          path: /app/output_data
 
       - name: Validate Pipeline Outputs
         #if else loop to check if output directory is created or not
@@ -103,6 +103,7 @@ jobs:
       - name: Run Unit Tests
         run: |
           pip install pytest # Ensure pytest is available in the runner
+          pip install -r requirements.txt
           pytest unit_tests/ # Assuming your tests are in src/unit_tests/
         # Or if running inside the Docker container (which is often better for consistency):
         # docker run --rm -v $(pwd)/src:/app/src video-pipeline sh -c "pip install pytest && pytest /app/src/tests"
