@@ -21,7 +21,7 @@ def generate_markdown_report(metrics: Dict[str, Any], output_path: str):
         report_content += "No pipeline stage timing data available.\n"
     report_content += "\n"
 
-    report_content += "##Dataset Statistics\n"
+    report_content += "## Dataset Statistics\n"
     
     # Frame Extraction Metrics
     report_content += "### Frame Extraction Metrics\n"

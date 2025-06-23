@@ -6,7 +6,7 @@ This report summarizes the key metrics and performance of the video pre-tagging 
 - **Frame Extraction S:** 17.09 seconds
 - **Object Detection S:** 36.39 seconds
 
-##Dataset Statistics
+## Dataset Statistics
 ### Frame Extraction Metrics
 - **Total Frames in Video:** 4077
 - **Frames Extracted:** 136

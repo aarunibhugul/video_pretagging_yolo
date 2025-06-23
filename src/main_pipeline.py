@@ -97,10 +97,13 @@ def run_pipeline(video_path: str, output_base_dir: str, frame_step: int, model_n
             "video_path": video_path,
             **{f"time_{k.replace('_s','')}": v for k, v in all_metrics.get("pipeline_stage_times", {}).items()},
             **{f"fe_{k}": v for k, v in all_metrics.get("frame_extraction_metrics", {}).items()},
-            "od_class_distribution": json.dumps(all_metrics.get("object_detection_metrics", {}).get("class_distribution", {})), # Stringify dict
-            **{f"od_{k}": v for k, v in all_metrics.get("object_detection_metrics", {}) if k != "class_distribution"}
+            "od_class_distribution": json.dumps(all_metrics.get("object_detection_metrics", {}).get("class_distribution", {})),
+            **{
+                f"od_{k}": v
+                for k, v in all_metrics.get("object_detection_metrics", {}).items()
+                if k != "class_distribution"
+            }
         }
-        
         file_exists = os.path.exists(csv_log_path)
         
         with open(csv_log_path, 'a', newline='') as f: # newline='' for csv.writer
@@ -126,7 +129,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--output_dir",
         type=str,
-        default="src/output", # Default to an 'output' directory relative to where script is run
+        default="output", # Default to an 'output' directory relative to where script is run
         help="Base directory to save all generated outputs (frames, COCO JSON, report)."
     )
     parser.add_argument(
