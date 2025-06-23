@@ -22,6 +22,50 @@ from config import (
 # Set up comprehensive logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+
+#code to perform input file check
+
+def validate_video_input(video_path: str) -> bool:
+    """
+    Performs basic validation on the input video file.
+
+    Checks:
+    1. If the file exists.
+    2. If OpenCV can open it and determine its frame count (basic format check).
+
+    Args:
+        video_path (str): Path to the input video file.
+
+    Returns:
+        bool: True if validation passes, False otherwise.
+    """
+    if not os.path.exists(video_path):
+        logging.error(f"Validation Error: Input video file not found at '{video_path}'")
+        return False
+
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        logging.error(f"Validation Error: Could not open video file '{video_path}'. "
+                      "It might be corrupted or in an unsupported format.")
+        cap.release()
+        return False
+
+    # Check if the video has a valid frame count (more than 0 frames)
+    # Some corrupted or invalid files might open but have 0 frames.
+    frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    if frame_count <= 0:
+        logging.error(f"Validation Error: Video '{video_path}' has 0 or invalid frame count ({frame_count}). "
+                      "It might be empty or severely corrupted.")
+        cap.release()
+        return False
+
+    cap.release()
+    logging.info(f"Input video '{video_path}' passed basic validation.")
+    return True
+
+
+
+
 def run_pipeline(video_path: str, output_base_dir: str, frame_step: int, model_name: str):
     """
     Runs the end-to-end video processing and object detection pipeline.
