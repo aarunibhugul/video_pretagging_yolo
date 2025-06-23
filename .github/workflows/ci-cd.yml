@@ -37,6 +37,7 @@ jobs:
       - name: Run Unit Tests Inside Docker
         run: |
           docker run --rm \
+          --entrypoint "" \
           -v ${{ github.workspace }}/unit_tests:/app/src/test \
           video-pipeline \
           sh -c "pip install pytest && pytest /app/src/test/ -v"
