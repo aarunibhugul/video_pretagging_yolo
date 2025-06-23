@@ -103,6 +103,8 @@ jobs:
       - name: Run Unit Tests
         run: |
           pip install pytest # Ensure pytest is available in the runner
-          pytest test/ # Assuming your tests are in src/tests/
+          pytest unit_tests/ # Assuming your tests are in src/unit_tests/
         # Or if running inside the Docker container (which is often better for consistency):
         # docker run --rm -v $(pwd)/src:/app/src video-pipeline sh -c "pip install pytest && pytest /app/src/tests"
+
+

@@ -1,0 +1,1 @@
+from src.reporter import generate_markdown_report
