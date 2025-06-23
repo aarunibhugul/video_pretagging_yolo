@@ -34,6 +34,15 @@ jobs:
         run: docker build -t video-pipeline .
 
 
+      - name: Run Unit Tests
+        run: |
+          docker run --rm \
+          -v $(pwd)/unit_tests:/app/src/tests \
+          video-pipeline \
+          sh -c "pip install pytest && pytest /app/src/tests/ -v"
+          
+          
+
       - name: Run pipeline Docker container
 
         #copy/mount input file from loca repo to container's - /app/input location
@@ -100,11 +109,11 @@ jobs:
             exit 1 # Fail the step
           fi
 
-      - name: Run Unit Tests
-        run: |
-          pip install pytest # Ensure pytest is available in the runner
-          pip install -r requirements.txt
-          pytest unit_tests/ # Assuming your tests are in src/unit_tests/
+     # - name: Run Unit Tests
+      #  run: |
+       #   pip install pytest # Ensure pytest is available in the runner
+        #  pip install -r requirements.txt
+         # pytest unit_tests/ # Assuming your tests are in src/unit_tests/
         # Or if running inside the Docker container (which is often better for consistency):
         # docker run --rm -v $(pwd)/src:/app/src video-pipeline sh -c "pip install pytest && pytest /app/src/tests"
 
