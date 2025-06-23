@@ -36,10 +36,9 @@ jobs:
 
       - name: Run Unit Tests
         run: |
-          docker run --rm \
-          -v $(pwd)/unit_tests:/app/src/tests \
-          video-pipeline \
-          sh -c "pip install pytest && pytest /app/src/tests/ -v"
+          pip install pytest # Ensure pytest is available in the runner
+          pip install -r requirements.txt
+          pytest unit_tests/ # Assuming your tests are in src/unit_tests/
           
           
 
@@ -109,11 +108,7 @@ jobs:
             exit 1 # Fail the step
           fi
 
-     # - name: Run Unit Tests
-      #  run: |
-       #   pip install pytest # Ensure pytest is available in the runner
-        #  pip install -r requirements.txt
-         # pytest unit_tests/ # Assuming your tests are in src/unit_tests/
+
         # Or if running inside the Docker container (which is often better for consistency):
         # docker run --rm -v $(pwd)/src:/app/src video-pipeline sh -c "pip install pytest && pytest /app/src/tests"
 
