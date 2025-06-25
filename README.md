@@ -23,7 +23,7 @@ These outputs make it easy to review and log the results of the video analysis.
 
 ### 2. Pipeline flow (design decision):
 
-![image](https://github.com/user-attachments/assets/a3d65236-0692-40c7-ab85-db28feacb5a9)
+![image](https://github.com/user-attachments/assets/b68a55ff-692d-4eb2-81ab-5ac5a35b3d1b)
 
 ### 3. Rationale for tooling:
 
@@ -31,7 +31,8 @@ These outputs make it easy to review and log the results of the video analysis.
 
 ### 4. Suggestions for Improvements & Scaling to many sites (cloud region):
 
-![image](https://github.com/user-attachments/assets/20f2dac6-9be4-4c93-8cdb-f274cfddad75)
+![image](https://github.com/user-attachments/assets/e630155b-90ef-407a-a2cd-53ab408d4088)
+
 
 
 
