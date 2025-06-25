@@ -13,7 +13,7 @@ def generate_markdown_report(metrics: Dict[str, Any], output_path: str):
     report_content = "# MLOps Pipeline Report\n\n"
     report_content += "This report summarizes the key metrics and performance of the video pre-tagging pipeline.\n\n"
 
-    report_content += "## Pipeline Timings\n"
+    report_content += "## Pipeline Timings actions\n"
     if "pipeline_stage_times" in metrics and metrics["pipeline_stage_times"]:
         for stage, duration in metrics["pipeline_stage_times"].items():
             report_content += f"- **{stage.replace('_', ' ').title()}:** {duration:.2f} seconds\n"
@@ -98,8 +98,8 @@ if __name__ == "__main__":
                           }
                         },
                         'pipeline_stage_times': {
-                          'frame_extraction_s': 12.778194904327393,
-                          'object_detection_s': 15.81555438041687
+                          'frame_extraction_stage': 12.778194904327393,
+                          'object_detection_stage': 15.81555438041687
                         }
 
 }
