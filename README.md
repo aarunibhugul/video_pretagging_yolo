@@ -33,7 +33,26 @@ These outputs make it easy to review and log the results of the video analysis.
 
 ### 4. Suggestions for Improvements & Scaling to many sites (cloud region):
 
-![image](https://github.com/user-attachments/assets/e630155b-90ef-407a-a2cd-53ab408d4088)
+#### Enhanced File Handling:
+
+* **Storage**: Store vast video files and results in cloud storage services (like AWS S3 or Google Cloud Storage Bucket) for easy access.
+* **Triggers**: Set triggers to automatically start the pipeline whenever a new video file is uploaded on the storage buckets.
+
+#### Regional Processing Power:
+
+* Deploy the pipeline to multiple cloud regions around the world. This brings the processing closer to your video sources, speeding up heavy workloads across different geographic locations.
+
+#### Serving Pipeline through API:
+
+* Make this pipeline callable via API, where users can send their videos to the API via HTTP and receive back a COCO file and an MD (Markdown) file.
+
+#### Continuous Monitoring and Alerts:
+
+* Implement monitoring and alerting that works across all regions. This means you'll instantly know if any part of the pipeline, in any geographic region, is having issues.
+
+#### Automated Infrastructure:
+
+* Use Infrastructure as Code (IaC) tools (like Terraform) to automatically set up and manage the cloud resources (servers, storage, networking) in each region. This makes deploying to new regions fast and consistent.
 
 
 
