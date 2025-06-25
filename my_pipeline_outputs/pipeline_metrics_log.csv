@@ -1,0 +1,2 @@
+timestamp,video_path,time_frame_extraction,time_object_detection,fe_total_frames_in_video,fe_frames_extracted,fe_frames_dropped,fe_frame_drop_ratio,od_class_distribution,od_images_processed,od_total_detections,od_detections_per_frame_avg
+2025-06-25 12:24:56,/app/input/timelapse_test.mp4,20.067020177841187,22.168515920639038,4077,136,0,0.0,"{""tv"": 21, ""car"": 111, ""person"": 27, ""boat"": 1, ""bus"": 30, ""truck"": 21, ""train"": 2}",136,213,1.5661764705882353
