@@ -3,7 +3,7 @@
 
 ### 1. Overview of pipeline
 
-![image](https://github.com/user-attachments/assets/279a5d3c-144b-4a4b-911a-2ebea9568a97)
+![image](https://github.com/user-attachments/assets/75aaf602-782b-4f05-b8a1-6642ef412f55)
 
 The **Vision Tag AI** pipeline automates video analysis with the following steps:
 
@@ -22,8 +22,10 @@ The **Vision Tag AI** pipeline automates video analysis with the following steps
 These outputs make it easy to review and log the results of the video analysis.
 
 ### 2. Pipeline flow (design decision):
+   Instructions to run this pipeline can be found in the [Readme-pipeline execution file](https://github.com/aarunibhugul/video_pretagging_yolo/blob/main/1.%20README%20-%20pipeline%20execution.md)
 
-![image](https://github.com/user-attachments/assets/b68a55ff-692d-4eb2-81ab-5ac5a35b3d1b)
+![image](https://github.com/user-attachments/assets/683ea5f1-d95e-4797-b14a-605fabee87e7)
+
 
 ### 3. Rationale for tooling:
 
