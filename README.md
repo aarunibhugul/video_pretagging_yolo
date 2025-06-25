@@ -12,7 +12,7 @@ The **Vision Tag AI** pipeline automates video analysis with the following steps
 2. **Analysis & Annotation:**  
    Analyzes each frame to detect and annotate objects.
 3. **Report Generation:**  
-   Generates reports in Markdown, JSON, and CSV formats.
+   Generates reports in [Markdown](https://github.com/aarunibhugul/video_pretagging_yolo/blob/main/output/pipeline_report.md), [JSON](https://github.com/aarunibhugul/video_pretagging_yolo/blob/main/output/detections.json), and [CSV](https://github.com/aarunibhugul/video_pretagging_yolo/blob/main/output/pipeline_metrics_log.csv) formats.
 
 **Outputs include:**  
 - Detailed metrics  
