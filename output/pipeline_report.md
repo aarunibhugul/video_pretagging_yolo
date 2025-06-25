@@ -3,8 +3,8 @@
 This report summarizes the key metrics and performance of the video pre-tagging pipeline.
 
 ## Pipeline Timings
-- **Frame Extraction S:** 17.89 seconds
-- **Object Detection S:** 37.21 seconds
+- **Frame Extraction Stage:** 17.89 seconds
+- **Object Detection Stage:** 37.21 seconds
 
 ## Dataset Statistics
 ### Frame Extraction Metrics
