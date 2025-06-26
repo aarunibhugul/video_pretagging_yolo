@@ -42,10 +42,10 @@ jobs:
 
       - name: Run pipeline Docker container
         run: |
-          mkdir -p pipeline_output
+          mkdir -p my_pipeline_outputs
           docker run \
             -v $(pwd)/input:/app/input \
-            -v $(pwd)/pipeline_output:/app/output_data \
+            -v $(pwd)/my_pipeline_outputs:/app/output_data \
             video-pipeline \
             --video_path /app/input/${{ github.event.inputs.video_name || 'timelapse_test.mp4' }} \
             --output_dir /app/output_data
