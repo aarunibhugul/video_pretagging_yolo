@@ -14,7 +14,7 @@ on:
       video_name:
         description: 'Name of the sample video file (e.g., sample.mp4)'
         required: true
-        default: 'sample_video.mp4'
+        default: 'timelapse_test.mp4'
 
 jobs:
   build-and-run-pipeline:
@@ -47,7 +47,7 @@ jobs:
             -v $(pwd)/input:/app/input \
             -v $(pwd)/pipeline_output:/app/output_data \
             video-pipeline \
-            --video_path /app/input/${{ github.event.inputs.video_name || 'sample_video.mp4' }} \
+            --video_path /app/input/${{ github.event.inputs.video_name || 'timelapse_test.mp4' }} \
             --output_dir /app/output_data
 
       - name: Upload output files
