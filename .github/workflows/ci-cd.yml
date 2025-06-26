@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: output-files
-          path: pipeline_output/
+          path: my_pipeline_outputs/
 
       - name: Validate Pipeline Outputs
         id: validate_outputs
