@@ -12,3 +12,4 @@ DEFAULT_FRAME_STEP = 30 # Save every Nth frame
 
 # Object detection model settings
 DEFAULT_MODEL_NAME = 'yolov8n.pt'
+#DEFAULT_MODEL_NAME = 'yolov8.pt'
