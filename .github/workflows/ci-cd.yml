@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       video_name:
-        description: 'Name of the sample video file (e.g., sample.mp4)'
+        description: 'Name of the testing video file (e.g., sample.mp4)'
         required: true
         default: 'timelapse_test.mp4'
 
