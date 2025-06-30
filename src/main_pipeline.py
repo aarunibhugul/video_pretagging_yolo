@@ -5,6 +5,7 @@ import logging
 import time # For timing stages
 import json # For potential future JSON logging
 import csv # For CSV logging
+import cv2
 
 # Import functions from our refactored modules
 from frame_extractor import extract_frames
@@ -40,9 +41,6 @@ def validate_video_input(video_path: str) -> bool:
         bool: True if validation passes, False otherwise.
     """
     #bonus validating input file
-    if not validate_video_input(video_path, logger_instance):
-        logging.error("Pipeline aborted due to input video validation failure.")
-        return # Exit if a critical stage fails
 
     if not os.path.exists(video_path):
         logging.error(f"Validation Error: Input video file not found at '{video_path}'")
@@ -88,7 +86,7 @@ def run_pipeline(video_path: str, output_base_dir: str, frame_step: int, model_n
     logging.info(f"Detection Model: {model_name}")
 
     # --- CALL TO VALIDATE VIDEO INPUT ---
-    if not validate_video_input(video_path, logger_instance):
+    if not validate_video_input(video_path):
         logging.error("Pipeline aborted due to input video validation failure.")
         return # Exit if a critical stage fails
     # --- END CALL ---
