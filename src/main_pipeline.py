@@ -39,6 +39,11 @@ def validate_video_input(video_path: str) -> bool:
     Returns:
         bool: True if validation passes, False otherwise.
     """
+
+    if not validate_video_input(video_path, logger_instance):
+        logging.error("Pipeline aborted due to input video validation failure.")
+        return # Exit if a critical stage fails
+
     if not os.path.exists(video_path):
         logging.error(f"Validation Error: Input video file not found at '{video_path}'")
         return False
@@ -132,6 +137,7 @@ def run_pipeline(video_path: str, output_base_dir: str, frame_step: int, model_n
         logging.info(f"Pipeline report generated at: {report_output_path}")
     except Exception as e:
         logging.error(f"Failed to generate pipeline report: {e}")
+        logging.error(f"Failed to generate pipeline report: {e}")
 
     # Bonus: Basic CSV Logging
     csv_log_path = os.path.join(output_base_dir, DEFAULT_CSV_LOG_PATH)
@@ -149,7 +155,7 @@ def run_pipeline(video_path: str, output_base_dir: str, frame_step: int, model_n
             }
         }
         file_exists = os.path.exists(csv_log_path)
-        
+
         with open(csv_log_path, 'a', newline='') as f: # newline='' for csv.writer
             writer = csv.DictWriter(f, fieldnames=log_entry_flat.keys())
             if not file_exists:
@@ -194,7 +200,7 @@ if __name__ == "__main__":
     # Create the output directory if it doesn't exist
     os.makedirs(args.output_dir, exist_ok=True)
 
-#running "runpipeline function"
+    #running "runpipeline function"
 
     run_pipeline(
         video_path=args.video_path,
