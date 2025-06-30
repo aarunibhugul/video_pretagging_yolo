@@ -39,7 +39,7 @@ def validate_video_input(video_path: str) -> bool:
     Returns:
         bool: True if validation passes, False otherwise.
     """
-
+    #bonus validating input file
     if not validate_video_input(video_path, logger_instance):
         logging.error("Pipeline aborted due to input video validation failure.")
         return # Exit if a critical stage fails
@@ -86,6 +86,12 @@ def run_pipeline(video_path: str, output_base_dir: str, frame_step: int, model_n
     logging.info(f"Output Base Directory: {output_base_dir}")
     logging.info(f"Frame Step: {frame_step}")
     logging.info(f"Detection Model: {model_name}")
+
+    # --- CALL TO VALIDATE VIDEO INPUT ---
+    if not validate_video_input(video_path, logger_instance):
+        logging.error("Pipeline aborted due to input video validation failure.")
+        return # Exit if a critical stage fails
+    # --- END CALL ---
 
     pipeline_stage_times = {}
     all_metrics = {}
