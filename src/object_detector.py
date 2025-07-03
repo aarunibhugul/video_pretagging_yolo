@@ -13,7 +13,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 def pretag_images_and_generate_coco(
     image_dir: str,
     output_coco_path: str,
-    model_name: str = 'yolov8n.pt'
+    #model_name: str = 'yolov8n.pt'
+    model_name: str
 ) -> Dict[str, Any]:
 
 
